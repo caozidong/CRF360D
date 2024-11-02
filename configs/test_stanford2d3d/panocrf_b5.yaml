@@ -1,0 +1,32 @@
+test_dataset:
+  name: stanford2d3d
+  root_path: /hpc2hdd/home/zcao740/Documents/Dataset/Stanford2D3D/
+  list_path: /hpc2hdd/home/zcao740/Documents/Github/CRF360D/datasets/stanford2d3d_test.txt
+  args:
+    height: 512
+    width: 1024
+    repeat: 1
+    augment_color: False
+    augment_flip: False
+    augment_rotation: False
+  batch_size: 1
+  num_workers: 4
+
+model:
+  name: panocrf
+  args:
+    encoder: efficientnet
+    min_depth: 0.1
+    max_depth: 8.0
+    depth: 2
+    rotation: True
+    localconv: True
+    interact: False
+
+median_align: False
+
+load_weights_dir: ./tmp/stanford2d3d/
+
+
+
+
