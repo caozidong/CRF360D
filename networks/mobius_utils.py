@@ -8,19 +8,6 @@ from math import pi
 import torch
 import torch.nn.functional as F
 
-def get_random_mobius():
-    theta = random.uniform(0, 2 * np.pi)
-    phi = random.uniform(-np.pi / 4, np.pi / 4)
-    scale = random.uniform(0.5, 5)
-
-    M_scale = np.array([[scale, 0], [0, 1]])
-    M_horizon = np.array([[np.cos(theta) + 1j * np.sin(theta), 0], [0, 1]])
-    M_vertical = np.array([[np.cos(phi / 2), np.sin(phi / 2)], [-np.sin(phi / 2), np.cos(phi / 2)]])
-    M = M_horizon @ M_vertical @ M_scale
-    M = torch.from_numpy(M)
-
-    return M
-
 def warp_mobius_coord(x, M, coord, get_sphere=False, pole='North'):
     '''Input: x->tensor:(b,n,c)
               M->tensor:(2,2)
@@ -150,14 +137,3 @@ def pixel_coords_from_angles(coord):
     out[:, :, 1] = coord[:, :, 0] / pi - 1
     out[:, :, 0] = coord[:, :, 1] / (0.5 * pi)
     return out
-
-def coord_adaptation_2d(coord, axis):
-    coord_new = torch.zeros_like(coord.clone()).cuda()
-    coord_new[:, :, 0] = torch.sum(torch.mul(coord, axis), dim=2, keepdim=False)
-
-    axis_vertical = torch.zeros_like(coord.clone()).cuda()
-    axis_vertical[:, :, 0] = axis[:, :, 1]
-    axis_vertical[:, :, 1] = -1 * axis[:, :, 0]
-    coord_new[:, :, 1] = torch.sum(torch.mul(coord, axis_vertical), dim=2, keepdim=False)
-    
-    return coord_new
