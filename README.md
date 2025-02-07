@@ -51,7 +51,7 @@ It is similar for other datasets, such as Structured3D dataset.
 
 #### Pre-trained models
 
-The pre-trained models of CRF360D for 2 datasets are available, [Matterport3D](https://drive.google.com/drive/folders/1Dx7QR4ypujgLbyOo1zu4vIYXbqf95ToE?usp=sharing), and [Stanford2D3D](https://drive.google.com/drive/folders/1q3LP9tyWi18yJwmhdjVn7dGUOsU3AH9G?usp=sharing).
+The pre-trained models of CRF360D for 2 datasets are available, [Matterport3D](https://drive.google.com/drive/folders/1ewHLBTBKwCp37o2bnfNTlAeD5FaMAA-w?usp=sharing), and [Stanford2D3D](https://drive.google.com/drive/folders/1yX9OyL6GOuTTxaHSlqrB6RE93rEF8K9x?usp=sharing).
 
 #### Test on a pre-trained model
 
